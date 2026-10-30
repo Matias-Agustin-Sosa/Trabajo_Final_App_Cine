@@ -66,7 +66,7 @@ export const Formulario: React.FC<Props> = ({
         onChangeText={onChangePasword}
       />
 
-      <Button title="Registrarse" color="#8b050a" onPress={onRegistrar} disabled={!puedeEnviar} />
+      <Button title="Registrarse" color="#f70202" onPress={onRegistrar} disabled={!puedeEnviar} />
     </ScrollView>
   </KeyboardAvoidingView>
 );

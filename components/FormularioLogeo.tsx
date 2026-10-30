@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet, Text, TextInput, Button,
-  KeyboardAvoidingView, ScrollView, Platform
+  KeyboardAvoidingView, ScrollView, Platform, Image
 } from 'react-native';
 
 type Props = {
@@ -23,6 +23,8 @@ export const Formulario: React.FC<Props> = ({
     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
   >
     <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+      <Image source={require('../img/Logo.png')} style={styles.cartel} resizeMode="cover" />
+      <Text style={styles.titulo}>Cine Coliseo</Text>
       <Text style={styles.title}>Inicio de Sesión</Text>
 
       <Text style={styles.label}>Email</Text>
@@ -47,7 +49,7 @@ export const Formulario: React.FC<Props> = ({
       <Button title="Ingresar" color="#f70202" onPress={onIngresar} disabled={!puedeEnviar} />
 
       <Text style={styles.cuenta}>No tengo una cuenta</Text>
-      <Button title="Registrate" color="#8b050a"onPress={onRegistrar} />
+      <Button title="Registrate" color="#f70202"onPress={onRegistrar} />
     </ScrollView>
   </KeyboardAvoidingView>
 );
@@ -59,4 +61,19 @@ const styles = StyleSheet.create({
   label: { fontSize: 14, fontWeight: 'bold', marginBottom: 5, color: '#ffffff' },
   cuenta: { fontSize: 14, fontWeight: 'bold', marginBottom: 5, marginTop: 40, color: '#ffffff' },
   input: { borderWidth: 1, borderColor: '#fff', padding: 10, marginBottom: 15, borderRadius: 5, backgroundColor: '#f9f9f9' },
+  titulo: {
+    color: '#ff0101', 
+    fontSize: 45,
+    fontWeight: 'bold',  
+    fontFamily: 'serif',
+    textAlign: 'center',
+    backgroundColor: '#000',
+    marginBottom: 80
+    //paddingTop: 60,
+  },
+  cartel: {
+    width: 100, height: 100,
+    borderRadius: 8,
+    alignSelf: 'center',
+  },
 });

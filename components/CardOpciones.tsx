@@ -16,7 +16,7 @@ export const SelectorOpciones: React.FC<SelectorProps> = ({ titulo, valor, opcio
       selectedValue={valor}
       onValueChange={onCambio}
       style={styles.selecionable}
-      dropdownIconColor="#fff"
+      dropdownIconColor="#ff0101"
     >
       {opciones.map((op) => (
         <Picker.Item key={op} label={op} value={op} />
@@ -27,7 +27,7 @@ export const SelectorOpciones: React.FC<SelectorProps> = ({ titulo, valor, opcio
 
 const styles = StyleSheet.create({
   datos: {
-    color: '#ffffff', 
+    color: '#f8f8f8', 
     fontSize: 15, 
     fontWeight: 'bold',  
     marginLeft: 10, 
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     fontFamily: 'serif', 
   },
   selecionable: {
-    color: '#fff', 
-    backgroundColor: '#8b050a',
+    color: '#f8f8f8', 
+    backgroundColor: '#000',
     marginLeft: 10,  
     marginBottom: 12,
     width: 120,

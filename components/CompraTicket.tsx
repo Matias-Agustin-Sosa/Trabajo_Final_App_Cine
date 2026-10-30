@@ -59,7 +59,7 @@ export const ConfirmaCompra: React.FC<Props> = ({ titulo, imagen, id_usuario }) 
               <SelectorOpciones titulo="Asientos:" valor={asientos} opciones={['1','2','3','4','5']} onCambio={setAsientos} />
               </View>
           </View>
-          <Button title="Confirmar Comprar" color="#f70202" onPress={Comprar} />
+          <Button title="Confirmar Comprar" color="#ff0101" onPress={Comprar} />
           <Text style={styles.marca}>Exlusivo Coliceo</Text>
       </View>
   </>
@@ -93,5 +93,5 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontFamily: 'serif',
   },
-  marca: {color: '#fff', fontSize: 10, marginTop: 10, marginBottom:10, fontStyle: 'italic'}
+  marca: {color: '#ff0101', fontSize: 10, marginTop: 10, marginBottom:10, fontStyle: 'italic'}
 });

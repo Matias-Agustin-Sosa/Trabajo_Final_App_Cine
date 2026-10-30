@@ -2,13 +2,21 @@ import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { openDatabase } from '../services/Database';
 import { Formulario } from '../components/FormularioRegistro'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/Navigation';
 
+type RegistroNavProp = NativeStackNavigationProp<RootStackParamList, 'Registro'>;
 
-const ScreenRegistro : React.FC = () => {
+type Props = {
+  navigation: RegistroNavProp;
+};
+
+const ScreenRegistro : React.FC<Props> = ({ navigation }) => {
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [pasword, setPasword] = useState('');
   const [dni, setDni] = useState('');
+
 
   const Registrate = async () => {
     const db = await openDatabase();
@@ -19,7 +27,7 @@ const ScreenRegistro : React.FC = () => {
       const existe : any[] =  await db.getAllAsync('SELECT email FROM users WHERE email = ?', email);
 
       if(existe.length === 0){ 
-        await db.runAsync(
+        const resultado = await db.runAsync(
           'INSERT INTO users (nombre, dni, email, pasword) VALUES (?, ?, ?, ?);',
           nombre, 
           dni,
@@ -27,12 +35,23 @@ const ScreenRegistro : React.FC = () => {
           pasword
         );
 
-        Alert.alert('Éxito', 'Usuario registrado correctamente');
+        const id_usuario = resultado.lastInsertRowId;
         
-        setNombre('');
-        setDni('');
-        setEmail('');
-        setPasword('');
+        navigation.replace('Coliceo', {
+          screen: 'Ticketera',
+          params: {
+            id_usuario,
+            nombre,
+            dni,
+            email,
+            pasword,
+          },
+        });
+
+        //setNombre('');
+        //setDni('');
+        //setEmail('');
+        //setPasword('');
       }
 
       else{

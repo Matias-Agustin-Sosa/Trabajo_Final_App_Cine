@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Image, Text} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ScreenRegistro from './screens/Registro'
@@ -57,9 +57,30 @@ const App : React.FC = () => {
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Logeo'>
-          <Stack.Screen name='Logeo' component={ScreenLogeo}></Stack.Screen>
-          <Stack.Screen name='Registro' component={ScreenRegistro}></Stack.Screen>
-          <Stack.Screen name='Coliceo' component={Tabs}></Stack.Screen>
+          <Stack.Screen name='Logeo' component={ScreenLogeo} options={{ headerShown: false }}></Stack.Screen>
+
+          <Stack.Screen name='Registro' component={ScreenRegistro} options={{    
+            title: 'Volver al Inicio',
+            headerStyle: { backgroundColor: '#000' },
+            headerTintColor: '#ff0101',
+            headerTitleStyle: { fontSize: 20, fontWeight: 'bold', fontFamily: 'serif',},
+          }}></Stack.Screen>
+          
+          <Stack.Screen name='Coliceo' component={Tabs} options={{
+            headerTitle: () => (
+            <>
+              <Image
+                source={require('./img/Logo.png')}
+                style={{ width: 50, height: 50 }}
+                resizeMode="contain"
+              />
+              <Text style={styles.titulo}>Cine Coliseo</Text>
+            </>
+            ), 
+            headerStyle: { backgroundColor: '#000' },
+            headerTitleAlign: 'center',
+            headerBackVisible: false,
+          }}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </View>
@@ -70,4 +91,5 @@ export default App;
 
 const styles = StyleSheet.create({
   container: { flex: 1,  justifyContent: 'center', backgroundColor: '#000000' },
+  titulo: {color: '#ff0101',  fontSize: 35, fontFamily: 'serif'}
 });

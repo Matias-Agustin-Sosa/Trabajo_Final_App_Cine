@@ -1,122 +1,119 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet, Text, View, TextInput, Button, Alert,
-  KeyboardAvoidingView, ScrollView, Platform
-} from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { StyleSheet, Text, TextInput, Button, Alert, KeyboardAvoidingView, ScrollView, Platform, View } from 'react-native';
 import { openDatabase } from '../services/Database';
 import { RootTabParamList } from '../types/NavigationTab';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { ActualizarDatos } from '../components/FormularioPerfil'
 
 type Props = BottomTabScreenProps<RootTabParamList, 'Perfil'>;
 
+interface MisDatos {
+  nombre: string;
+  dni: string;
+  email: string;
+}
+
 
 const PantallaInicio: React.FC<Props> = ({ navigation, route }) => {
-  const { id_usuario, nombre,  dni, email, pasword} = route.params;
+  const { id_usuario } = route.params;
+  const [datos, setDatos] = useState<MisDatos[]>([]);
   const [nuevo_email, setEmail] = useState('');
   const [nuevo_nombre, setNombre] = useState('');
   const [nuevo_dni, setDni] = useState('');
-  const [nuevo_pasword, setNuevoPasword] = useState('');
-  const [viejo_pasword, setPaswordViejo] = useState('');
+
+  const existeNombre = nuevo_nombre.trim() !== '' && nuevo_nombre.length > 3;
+  const existeEmail = nuevo_email.includes('@') && nuevo_email.length > 6 && nuevo_email.includes('.com')
+  const existeDni =  nuevo_dni.length > 6 
+
   
+  async function cargar() {
+    const db = await openDatabase();
+    
+    const misDatos =  await db.getAllAsync<MisDatos>('SELECT * FROM users WHERE id_usuario = ?', id_usuario);
+    setDatos(misDatos);
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      cargar();
+    }, [id_usuario])
+  )
+
 
   const cambioDato = async () => {
     const db = await openDatabase();
     
     try{
-      if (nombre !== nuevo_nombre && nuevo_nombre !== ''){
+      if (nuevo_nombre !== ''){
         await db.runAsync('UPDATE users SET nombre = ? WHERE id_usuario = ?', nuevo_nombre, id_usuario);
+        setNombre('');
       }
-
-      if (nuevo_dni !== dni && nuevo_dni !== ''){
+      if (nuevo_dni !== ''){
         await db.runAsync('UPDATE users SET dni = ? WHERE id_usuario = ?', nuevo_dni, id_usuario);
+        setDni('');
       }
       
-      if (nuevo_email !== email && nuevo_email !== ''){
+      if (nuevo_email !== ''){
         await db.runAsync('UPDATE users SET email = ? WHERE id_usuario = ?', nuevo_email, id_usuario);
+        setEmail('');
       }
 
-      setDni('');
-      setNombre('');
-      setEmail('');
-
-      Alert.alert('Éxito', 'Cambios guardados');
+      cargar();
     }
+
     catch (error) {
       console.error(error);
       Alert.alert('Error', 'No se pudo hacer el cambio');
     }
   };
 
-  const puedeEnviar = 
-    nuevo_nombre.trim() !== '' ||
-    nuevo_dni !== '' ||
-    nuevo_email.includes('@')
-  ;
+  return ( //Cambio Prefil
+    <>
+      <ActualizarDatos 
+      dato={nuevo_nombre}
+      datoActual={`Nombre actual: ${datos[0]?.nombre}`}
+      leyenda='Tu nuevo nombre' 
+      onChangeDato={setNombre} 
+      onActualizar={cambioDato} 
+      puedeEnviar={existeNombre} />
+      
+      <ActualizarDatos 
+      dato={nuevo_email}
+      datoActual={`Email actual: ${datos[0]?.email}`}
+      leyenda='Tu nuevo email' 
+      onChangeDato={setEmail} 
+      onActualizar={cambioDato} 
+      puedeEnviar={existeEmail} />
 
-  return (
-    <KeyboardAvoidingView
-      style={styles.view}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <ScrollView
-        contentContainerStyle={styles.container}
-        keyboardShouldPersistTaps="handled"
-      >
-        <Text style={styles.label}>Nombre y Apellido: {nuevo_nombre}</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Escribe tu nombre"
-          autoCapitalize="none"
-          value={nuevo_nombre}
-          onChangeText={setNombre}
-        />
+      <ActualizarDatos 
+      dato={nuevo_dni}
+      datoActual={`DNI actual: ${datos[0]?.dni}`}
+      leyenda='Tu nuevo dni' 
+      onChangeDato={setDni} 
+      onActualizar={cambioDato} 
+      puedeEnviar={existeDni} />
 
-        <Text style={styles.label}>DNI: {dni}</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="11111111"
-          keyboardType="number-pad"
-          value={nuevo_dni}
-          // Evita la incercion de texto
-          onChangeText={(texto) => setDni(texto.replace(/[^0-9]/g, ''))}
-        />
-        
-
-        <Text style={styles.label}>Email: {nuevo_email}</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="correo@example.com"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          value={nuevo_email}
-          onChangeText={setEmail}
-        />
-
-        <Text style={styles.label}>Contraseña Actual</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Contraseña"
-          value={viejo_pasword}
-          secureTextEntry
-          onChangeText={setPaswordViejo}
-        />
-        
-        <Button title="Guardar cambios" color="#08fbfb" onPress={cambioDato} disabled={!puedeEnviar}/>
-
+      <View style={styles.view}>
         <Text style={styles.cuenta}>Deseas cerrar cesion?</Text>
         <Button title="Cerrar Sesión" color="#ff0707" onPress={() => navigation.getParent()?.replace('Logeo')}/>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      </View>
+    </>
+
   );
 };
 
 export default PantallaInicio;
 
 const styles = StyleSheet.create({
-  view: { flex: 1, backgroundColor: '#000000' },
+  view: { flex: 1, backgroundColor: '#000000', alignItems: 'center'},
   container: { flexGrow: 1, padding: 40, justifyContent: 'center', backgroundColor: '#000000' },
   title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center', color: '#ffffff' },
   label: { fontSize: 14, fontWeight: 'bold', marginBottom: 5, color: '#ffffff' },
   cuenta: { fontSize: 14, fontWeight: 'bold', marginBottom: 5, marginTop: 40, color: '#ffffff' },
   input: { borderWidth: 1, borderColor: '#fff', padding: 10, marginBottom: 15, borderRadius: 5, backgroundColor: '#f9f9f9' }
 });
+
+
+/*
+*/

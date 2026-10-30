@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View, Text, StyleSheet} from 'react-native';
 import { openDatabase} from '../services/Database';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/Navigation';
@@ -33,26 +33,21 @@ const ScreenLogeo : React.FC<Props> = ({ navigation }) => {
         const id_usuario = existe[0].id_usuario;
         const dni = existe[0].dni;
 
-        Alert.alert('Bienvenido!!', `${nombre}`, [
-          {
-            text: 'OK',
-            onPress: () =>
-              navigation.replace('Coliceo', {
-                screen: 'Ticketera',
-                params: {
-                  id_usuario,
-                  nombre,
-                  dni,
-                  email,
-                  pasword,
-                },
-            }),
+        
+        navigation.replace('Coliceo', {
+          screen: 'Ticketera',
+          params: {
+            id_usuario,
+            nombre,
+            dni,
+            email,
+            pasword,
           },
-        ]);
+        });
 
         // Limpiar formulario
-        setEmail('');
-        setPasword('');
+        //setEmail('');
+        //setPasword('');
       }
 
       else{
