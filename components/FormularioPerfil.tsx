@@ -42,7 +42,7 @@ export const ActualizarDatos: React.FC<Props> = ({ dato, onActualizar, onChangeD
 );
 
 const styles = StyleSheet.create({
-  view: {padding: 20, backgroundColor: '#000000' },
+  view: {padding: 20, backgroundColor: '#000000'},
   container: { flexGrow: 1, padding: 40, justifyContent: 'center', backgroundColor: '#000000' },
   title: { fontSize: 24, fontWeight: 'bold', textAlign: 'center', color: '#ffffff' },
   label: { fontSize: 14, fontWeight: 'bold', marginBottom: 10, color: '#ffffff' },

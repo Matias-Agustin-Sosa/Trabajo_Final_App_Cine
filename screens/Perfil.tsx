@@ -70,29 +70,31 @@ const PantallaInicio: React.FC<Props> = ({ navigation, route }) => {
 
   return ( //Cambio Prefil
     <>
-      <ActualizarDatos 
-      dato={nuevo_nombre}
-      datoActual={`Nombre actual: ${datos[0]?.nombre}`}
-      leyenda='Tu nuevo nombre' 
-      onChangeDato={setNombre} 
-      onActualizar={cambioDato} 
-      puedeEnviar={existeNombre} />
-      
-      <ActualizarDatos 
-      dato={nuevo_email}
-      datoActual={`Email actual: ${datos[0]?.email}`}
-      leyenda='Tu nuevo email' 
-      onChangeDato={setEmail} 
-      onActualizar={cambioDato} 
-      puedeEnviar={existeEmail} />
+      <View style={{alignItems: 'center', backgroundColor: '#000' }}>
+        <ActualizarDatos 
+        dato={nuevo_nombre}
+        datoActual={`Nombre actual: ${datos[0]?.nombre}`}
+        leyenda='Tu nuevo nombre' 
+        onChangeDato={setNombre} 
+        onActualizar={cambioDato} 
+        puedeEnviar={existeNombre} />
+        
+        <ActualizarDatos 
+        dato={nuevo_email}
+        datoActual={`Email actual: ${datos[0]?.email}`}
+        leyenda='Tu nuevo email' 
+        onChangeDato={setEmail} 
+        onActualizar={cambioDato} 
+        puedeEnviar={existeEmail} />
 
-      <ActualizarDatos 
-      dato={nuevo_dni}
-      datoActual={`DNI actual: ${datos[0]?.dni}`}
-      leyenda='Tu nuevo dni' 
-      onChangeDato={setDni} 
-      onActualizar={cambioDato} 
-      puedeEnviar={existeDni} />
+        <ActualizarDatos 
+        dato={nuevo_dni}
+        datoActual={`DNI actual: ${datos[0]?.dni}`}
+        leyenda='Tu nuevo dni' 
+        onChangeDato={setDni} 
+        onActualizar={cambioDato} 
+        puedeEnviar={existeDni} />
+      </View>
 
       <View style={styles.view}>
         <Text style={styles.cuenta}>Deseas cerrar cesion?</Text>
@@ -107,13 +109,5 @@ export default PantallaInicio;
 
 const styles = StyleSheet.create({
   view: { flex: 1, backgroundColor: '#000000', alignItems: 'center'},
-  container: { flexGrow: 1, padding: 40, justifyContent: 'center', backgroundColor: '#000000' },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center', color: '#ffffff' },
-  label: { fontSize: 14, fontWeight: 'bold', marginBottom: 5, color: '#ffffff' },
   cuenta: { fontSize: 14, fontWeight: 'bold', marginBottom: 5, marginTop: 40, color: '#ffffff' },
-  input: { borderWidth: 1, borderColor: '#fff', padding: 10, marginBottom: 15, borderRadius: 5, backgroundColor: '#f9f9f9' }
 });
-
-
-/*
-*/

@@ -25,6 +25,13 @@ function Tabs({ route }: PrincipalProps) {
     <Tab.Navigator
       screenOptions={({route}, ) => ({
         headerShown: false,
+        // Fondo de la barra
+        tabBarStyle: {
+          backgroundColor: '#000000',
+        },
+        tabBarActiveTintColor: '#ff0101',
+        tabBarInactiveTintColor: '#ffff',
+
         tabBarIcon: ({ color, size }) => {
         let iconName: keyof typeof Ionicons.glyphMap;
 
