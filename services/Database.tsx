@@ -17,7 +17,8 @@ export function openDatabase(): Promise<SQLite.SQLiteDatabase> {
           nombre TEXT,
           dni INTEGER,
           email TEXT,
-          pasword TEXT
+          pasword TEXT,
+          foto TEXT
         );
         
         CREATE TABLE IF NOT EXISTS peliculas (
@@ -46,11 +47,11 @@ export function openDatabase(): Promise<SQLite.SQLiteDatabase> {
       if (total === 0) {
         await db.execAsync(`
           INSERT INTO peliculas (titulo, imagen) VALUES
-            ('Jumanji', ${require('../img/Jumanji.jpg')}),
-            ('Star Wars', ${require('../img/Star Wars.jpg')}),
-            ('Black Adam', ${require('../img/Black Adam.png')}),
-            ('Uncharted', ${require('../img/Uncharted.png')}),
-            ('Rapidos y Furiosos', ${require('../img/Rapidos y Furiosos.jpg')});
+            ('Jumanji', '../img/Jumanji.jpg'),
+            ('Star Wars', '../img/Star Wars.jpg'),
+            ('Black Adam', '../img/Black Adam.png'),
+            ('Uncharted', '../img/Uncharted.png'),
+            ('Rapidos y Furiosos', '../img/Rapidos y Furiosos.jpg');
         `);
       }
       
@@ -62,4 +63,8 @@ export function openDatabase(): Promise<SQLite.SQLiteDatabase> {
 
 
 
-
+/*            ('Jumanji', ${require('../img/Jumanji.jpg')}),
+            ('Star Wars', ${require('../img/Star Wars.jpg')}),
+            ('Black Adam', ${require('../img/Black Adam.png')}),
+            ('Uncharted', ${require('../img/Uncharted.png')}),
+            ('Rapidos y Furiosos', ${require('../img/Rapidos y Furiosos.jpg')});*/
