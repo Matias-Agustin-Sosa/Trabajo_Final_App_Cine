@@ -11,13 +11,21 @@ interface Historial {
   id: number;
   id_user: number;
   titulo: string;
-  imagen: number;
+  imagen: string;
   horario: string;
   dia: string;
   formato: string;
   idioma: string;
   asientos: string;
 }
+
+const imagenes: Record<string, number> = {
+  jumanji: require('../img/Jumanji.jpg'),
+  starwars: require('../img/Star Wars.jpg'),
+  blackadam: require('../img/Black Adam.png'),
+  uncharted: require('../img/Uncharted.png'),
+  rapidosfuriosos: require('../img/Rapidos y Furiosos.jpg'),
+};
 
 const ScreenTusEntradas: React.FC<Props> = ({route}) => {
   const { id_usuario } = route.params;
@@ -48,7 +56,7 @@ const ScreenTusEntradas: React.FC<Props> = ({route}) => {
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <View style={styles.tarjeta}>
-          <Image source={item.imagen} style={styles.cartel} resizeMode="cover" />
+          <Image source={imagenes[item.imagen]} style={styles.cartel} resizeMode="cover" />
           <View style={styles.info}>
             <Text style={styles.titulo}>{item.titulo}</Text>
             <Text style={styles.datos}>Horario: {item.horario}</Text>

@@ -11,7 +11,7 @@ type Props = BottomTabScreenProps<RootTabParamList, 'Ticketera'>;
 interface Pelicula {
   id: number;
   titulo: string;
-  imagen: number;
+  imagen: string;
 }
 
 const misPeliculas = async (): Promise<Pelicula[]> => {

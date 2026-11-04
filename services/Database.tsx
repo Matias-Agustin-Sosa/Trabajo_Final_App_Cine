@@ -47,11 +47,11 @@ export function openDatabase(): Promise<SQLite.SQLiteDatabase> {
       if (total === 0) {
         await db.execAsync(`
           INSERT INTO peliculas (titulo, imagen) VALUES
-            ('Jumanji', '../img/Jumanji.jpg'),
-            ('Star Wars', '../img/Star Wars.jpg'),
-            ('Black Adam', '../img/Black Adam.png'),
-            ('Uncharted', '../img/Uncharted.png'),
-            ('Rapidos y Furiosos', '../img/Rapidos y Furiosos.jpg');
+            ('Jumanji', 'jumanji'),
+            ('Star Wars', 'starwars'),
+            ('Black Adam', 'blackadam'),
+            ('Uncharted', 'uncharted'),
+            ('Rapidos y Furiosos', 'rapidosfuriosos');
         `);
       }
       
@@ -63,8 +63,8 @@ export function openDatabase(): Promise<SQLite.SQLiteDatabase> {
 
 
 
-/*            ('Jumanji', ${require('../img/Jumanji.jpg')}),
-            ('Star Wars', ${require('../img/Star Wars.jpg')}),
-            ('Black Adam', ${require('../img/Black Adam.png')}),
-            ('Uncharted', ${require('../img/Uncharted.png')}),
-            ('Rapidos y Furiosos', ${require('../img/Rapidos y Furiosos.jpg')});*/
+/*('Jumanji', ${require('../img/Jumanji.jpg')}),
+('Star Wars', ${require('../img/Star Wars.jpg')}),
+('Black Adam', ${require('../img/Black Adam.png')}),
+('Uncharted', ${require('../img/Uncharted.png')}),
+('Rapidos y Furiosos', ${require('../img/Rapidos y Furiosos.jpg')});*/

@@ -6,9 +6,17 @@ import { openDatabase } from '../services/Database';
 const horarios = ['18:00', '20:30', '22:45'];
 const dias = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'];
 
+const imagenes: Record<string, number> = {
+  jumanji: require('../img/Jumanji.jpg'),
+  starwars: require('../img/Star Wars.jpg'),
+  blackadam: require('../img/Black Adam.png'),
+  uncharted: require('../img/Uncharted.png'),
+  rapidosfuriosos: require('../img/Rapidos y Furiosos.jpg'),
+};
+
 interface Props {
   titulo: string;
-  imagen: number;
+  imagen: string;
   id_usuario: number;
 }
 
@@ -49,7 +57,7 @@ export const ConfirmaCompra: React.FC<Props> = ({ titulo, imagen, id_usuario }) 
       <View style={styles.tarjeta}>
           <Text style={styles.titulo}>{titulo}</Text>
           <View style={{flexDirection: 'row'}}>
-              <Image source={imagen} style={styles.cartel} resizeMode="cover" />
+              <Image source={imagenes[imagen]} style={styles.cartel} resizeMode="cover" />
 
               <View>
               <SelectorOpciones titulo="Horario:" valor={horario} opciones={horarios} onCambio={setHorario} />
