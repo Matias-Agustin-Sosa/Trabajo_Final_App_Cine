@@ -2,17 +2,11 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, Alert, TextInput, Button } from 'react-native';
 import { SelectorOpciones } from './CardOpciones';
 import { openDatabase } from '../services/Database';
+import { imagenes } from '../services/RutasImagenes'
 
 const horarios = ['18:00', '20:30', '22:45'];
 const dias = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'];
 
-const imagenes: Record<string, number> = {
-  jumanji: require('../img/Jumanji.jpg'),
-  starwars: require('../img/Star Wars.jpg'),
-  blackadam: require('../img/Black Adam.png'),
-  uncharted: require('../img/Uncharted.png'),
-  rapidosfuriosos: require('../img/Rapidos y Furiosos.jpg'),
-};
 
 interface Props {
   titulo: string;

@@ -4,6 +4,7 @@ import { FlatList, Text, View, StyleSheet, Image } from 'react-native';
 import { openDatabase } from '../services/Database';
 import { RootTabParamList } from '../types/NavigationTab';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { imagenes } from '../services/RutasImagenes'
 
 type Props = BottomTabScreenProps<RootTabParamList, 'Entradas'>;
 
@@ -18,14 +19,6 @@ interface Historial {
   idioma: string;
   asientos: string;
 }
-
-const imagenes: Record<string, number> = {
-  jumanji: require('../img/Jumanji.jpg'),
-  starwars: require('../img/Star Wars.jpg'),
-  blackadam: require('../img/Black Adam.png'),
-  uncharted: require('../img/Uncharted.png'),
-  rapidosfuriosos: require('../img/Rapidos y Furiosos.jpg'),
-};
 
 const ScreenTusEntradas: React.FC<Props> = ({route}) => {
   const { id_usuario } = route.params;
