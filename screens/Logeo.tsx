@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Alert, View, Text, StyleSheet} from 'react-native';
+import { Alert } from 'react-native';
 import { openDatabase} from '../services/Database';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/Navigation';
+import { RootStackParamList } from '../navigation/Navigation';
 import { Formulario } from '../components/FormularioLogeo'
 
 type LogeoNavProp = NativeStackNavigationProp<RootStackParamList, 'Logeo'>;

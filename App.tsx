@@ -9,8 +9,8 @@ import ScreenEntradas from './screens/Ticketera';
 import ScreenTusEntradas from './screens/TusEntradas';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { RootStackParamList } from './types/Navigation';
-import { RootTabParamList } from './types/NavigationTab';
+import { RootStackParamList } from './navigation/Navigation';
+import { RootTabParamList } from './navigation/NavigationTab';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type PrincipalProps = NativeStackScreenProps<RootStackParamList, 'Coliceo'>;

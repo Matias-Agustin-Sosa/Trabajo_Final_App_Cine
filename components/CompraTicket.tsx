@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, Alert, TextInput, Button } from 'react-native';
+import { Text, View, StyleSheet, Image, Alert, Button } from 'react-native';
 import { SelectorOpciones } from './CardOpciones';
 import { openDatabase } from '../services/Database';
 import { imagenes } from '../services/RutasImagenes'

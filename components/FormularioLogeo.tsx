@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet, Text, TextInput, Button,
-  KeyboardAvoidingView, ScrollView, Platform, Image
-} from 'react-native';
+import { StyleSheet, Text, TextInput, Button, KeyboardAvoidingView, ScrollView, Platform, Image } from 'react-native';
 
 type Props = {
   email: string;

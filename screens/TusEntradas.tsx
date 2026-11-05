@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { FlatList, Text, View, StyleSheet, Image } from 'react-native';
 import { openDatabase } from '../services/Database';
-import { RootTabParamList } from '../types/NavigationTab';
+import { RootTabParamList } from '../navigation/NavigationTab';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { imagenes } from '../services/RutasImagenes'
 

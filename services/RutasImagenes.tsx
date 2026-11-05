@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 export const imagenes: Record<string, number> = {
   jumanji: require('../img/Jumanji.jpg'),
   starwars: require('../img/Star Wars.jpg'),

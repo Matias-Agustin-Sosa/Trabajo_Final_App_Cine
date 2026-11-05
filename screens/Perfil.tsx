@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, Text, Image, Button, Alert, View, ScrollView, KeyboardAvoidingView} from 'react-native';
 import { openDatabase } from '../services/Database';
-import { RootTabParamList } from '../types/NavigationTab';
+import { RootTabParamList } from '../navigation/NavigationTab';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { ActualizarDatos } from '../components/FormularioPerfil'
 import * as ImagePicker from 'expo-image-picker';

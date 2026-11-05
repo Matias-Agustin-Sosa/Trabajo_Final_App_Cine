@@ -1,11 +1,6 @@
 import React from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import {
-  StyleSheet, Text, TextInput, Button,
-  KeyboardAvoidingView, ScrollView, Platform,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 type Props = {
   dato: string;

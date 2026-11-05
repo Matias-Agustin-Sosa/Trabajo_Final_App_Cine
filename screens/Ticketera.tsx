@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { openDatabase } from '../services/Database';
 import { ConfirmaCompra } from '../components/CompraTicket';
-import { RootTabParamList } from '../types/NavigationTab';
+import { RootTabParamList } from '../navigation/NavigationTab';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 

@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import { openDatabase } from '../services/Database';
 import { Formulario } from '../components/FormularioRegistro'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/Navigation';
+import { RootStackParamList } from '../navigation/Navigation';
 
 type RegistroNavProp = NativeStackNavigationProp<RootStackParamList, 'Registro'>;
 
